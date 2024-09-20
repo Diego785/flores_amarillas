@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  server:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: gift
+    working_dir: /var/www/html/
+    restart: always
+    container_name: gift
+    hostname: gift
+    ports:
+      - 8000:9000
+    volumes:
+      - ./:/var/www/html/:rw
+    networks:
+      - server-network
+
+networks:
+  server-network:
+    external: true
